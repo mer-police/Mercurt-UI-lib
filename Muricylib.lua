@@ -1,33 +1,9 @@
---[[
-
-██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-█░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░██░░░░░░░░█
-█░░▄▀░░░░░░░░░░░░░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀░░██░░▄▀▄▀░░█
-█░░▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░░░▄▀░░██░░▄▀░░░░█
-█░░▄▀░░░░░░▄▀░░░░░░▄▀░░█░░▄▀░░█████████░░▄▀░░████░░▄▀░░███░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░█████░░▄▀▄▀░░▄▀▄▀░░███
-█░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░█████░░░░▄▀▄▀▄▀░░░░███
-█░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███████░░░░▄▀░░░░█████
-█░░▄▀░░██░░░░░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░yue<3▀░░░░███░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░█████████░░▄▀░░███████
-█░░▄▀░░██████████░░▄▀░░█░░▄▀░░█████████░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░███████████░░▄▀░░███████
-█░░▄▀░░██████████░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░███████░░▄▀░░███████
-█░░▄▀░░██████████░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░███████░░▄▀░░███████
-█░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░███████░░░░░░███████
-██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
-edited: 1/26
-developers:
-v3rm AbstractPoo	discord Abstract#8007
-v3rm 0xDEITY		discord Deity#0228
-
-]]
-
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
-local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
@@ -103,8 +79,6 @@ local selectedTab
 
 Library._promptExists = false
 Library._colorPickerExists = false
-
-local GlobalTweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
 
 function Library:set_defaults(defaults, options)
 	defaults = defaults or {}
@@ -407,44 +381,21 @@ end
 	
 ]]
 
-local updateSettings = function() end
-
 function Library:set_status(txt)
-	self.statusText.Text = txt
+	self.statusText.Text = "Status | " .. txt
+end
+
+function Library:set_button_functions(button, default, hover, down)
+
 end
 
 function Library:create(options)
-
-	local settings = {
-		Theme = "Dark"
-	}
-
-	if readfile and writefile and isfile then
-		if not isfile("MercurySettings.json") then
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
-		end
-		settings = HTTPService:JSONDecode(readfile("MercurySettings.json"))
-		Library.CurrentTheme = Library.Themes[settings.Theme]
-		updateSettings = function(property, value)
-			settings[property] = value
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
-		end
-	end
-
 	options = self:set_defaults({
 		Name = "Mercury",
 		Size = UDim2.fromOffset(600, 400),
-		Theme = self.Themes[settings.Theme],
+		Theme = self.Themes.Dark,
 		Link = "https://github.com/deeeity/mercury-lib"
 	}, options)
-	
-	if getgenv and getgenv().MercuryUI then
-		getgenv():MercuryUI()
-		getgenv().MercuryUI = nil
-	end
-
-	
-	
 	if options.Link:sub(-1, -1) == "/" then
 		options.Link = options.Link:sub(1, -2)
 	end
@@ -458,18 +409,6 @@ function Library:create(options)
 	local gui = self:object("ScreenGui", {
 		Parent = (RunService:IsStudio() and LocalPlayer.PlayerGui) or game:GetService("CoreGui"),
 		ZIndexBehavior = Enum.ZIndexBehavior.Global
-	})
-
-	local notificationHolder = gui:object("Frame", {
-		AnchorPoint = Vector2.new(1, 1),
-		BackgroundTransparency = 1,
-		Position = UDim2.new(1, -30,1, -30),
-		Size = UDim2.new(0, 300, 1, -60)
-	})
-
-	local _notiHolderList = notificationHolder:object("UIListLayout", {
-		Padding = UDim.new(0, 20),
-		VerticalAlignment = Enum.VerticalAlignment.Bottom
 	})
 
 	local core = gui:object("Frame", {
@@ -578,22 +517,14 @@ function Library:create(options)
 	closeButton.MouseLeave:connect(function()
 		closeButton:tween{ImageColor3 = Library.CurrentTheme.StrongText}
 	end)
-	
-	local function closeUI()
+
+	closeButton.MouseButton1Click:connect(function()
 		core.ClipsDescendants = true
 		core:fade(true)
 		wait(0.1)
 		core:tween({Size = UDim2.new()}, function()
 			gui.AbsoluteObject:Destroy()
 		end)
-	end
-	
-	if getgenv then
-		getgenv().MercuryUI = closeUI
-	end
-		
-	closeButton.MouseButton1Click:connect(function()
-		closeUI()
 	end)
 
 	local urlBar = core:object("Frame", {
@@ -700,6 +631,19 @@ function Library:create(options)
 	})
 
 	local tabs = {}
+
+	-- size handling lol 
+--[[ 	setmetatable(tabs, {
+		__newindex = function(self, i, v)
+			rawset(self, i, v)
+			local absoluteSize = tabButtons.AbsoluteSize.X
+			local newSize = #self + 1
+			for _, t in next, self do
+				local tab = t[2]
+				tab.Size = UDim2.new(0, absoluteSize/newSize, 1, 0)
+			end
+		end
+	}) ]]
 	selectedTab = homeButton
 
 	tabs[#tabs+1] = {homePage, homeButton}
@@ -862,7 +806,6 @@ function Library:create(options)
 
 	local mt = setmetatable({
 		core = core,
-		notifs = notificationHolder,
 		statusText = status,
 		container = content,
 		navigation = tabButtons,
@@ -871,7 +814,7 @@ function Library:create(options)
 		quickAccess = quickAccess,
 		homeButton = homeButton,
 		homePage = homePage,
-		nilFolder = core:object("Folder"),
+		nilFolder = core:object("Folder")
 	}, Library)
 
 	local settingsTab = Library.tab(mt, {
@@ -885,7 +828,7 @@ function Library:create(options)
 	settingsTab:keybind{
 		Name = "Toggle Key",
 		Description = "Key to show/hide the UI.",
-		Keybind = Enum.KeyCode.Delete,
+		Keybind = Enum.KeyCode.BackSlash,
 		Callback = function()
 			self.Toggled = not self.Toggled
 			Library:show(self.Toggled)
@@ -916,148 +859,10 @@ function Library:create(options)
 		Internal = creditsTabIcon,
 		Icon = "http://www.roblox.com/asset/?id=8577523456"
 	})
-
-
-function Library:notification(options)
-	options = self:set_defaults({
-		Title = "Notification",
-		Text = "Your character has been reset.",
-		Duration = 3,
-		Callback = function() end
-	}, options)
-
-	local fadeOut;
-
-	local noti = self.notifs:object("Frame", {
-		BackgroundTransparency = 1,
-		Theme = {BackgroundColor3 = "Main"},
-		Size = UDim2.new(0, 300,0, 0)
-	}):round(10)
-
-	local _notiPadding = noti:object("UIPadding", {
-		PaddingBottom = UDim.new(0, 11),
-		PaddingTop = UDim.new(0, 11),
-		PaddingLeft = UDim.new(0, 11),
-		PaddingRight = UDim.new(0, 11)
-	})
-
-	local dropShadow = noti:object("Frame", {
-		ZIndex = 0,
-		BackgroundTransparency = 1,
-		Size = UDim2.fromScale(1, 1)
-	})
-
-	local _shadow = dropShadow:object("ImageLabel", {
-		Centered = true,
-		Position = UDim2.fromScale(.5, .5),
-		BackgroundTransparency = 1,
-		Size = UDim2.new(1, 70,1, 70),
-		ZIndex = 0,
-		Image = "rbxassetid://6014261993",
-		ImageColor3 = Color3.fromRGB(0,0,0),
-		ImageTransparency = 1,
-		ScaleType = Enum.ScaleType.Slice,
-		SliceCenter = Rect.new(49, 49, 450, 450)
-	})
-
-	local durationHolder = noti:object("Frame", {
-		BackgroundTransparency = 1,
-		Theme = {BackgroundColor3 = "Secondary"},
-		AnchorPoint = Vector2.new(0, 1),
-		Position = UDim2.fromScale(0, 1),
-		Size = UDim2.new(1, 0,0, 4)
-	}):round(100)
-
-	local length = durationHolder:object("Frame", {
-		BackgroundTransparency = 1,
-		Theme = {BackgroundColor3 = "Tertiary"},
-		Size = UDim2.fromScale(1, 1)
-	}):round(100)
-
-	local icon = noti:object("ImageLabel", {
-		BackgroundTransparency = 1,
-		ImageTransparency = 1,
-		Position = UDim2.fromOffset(1, 1),
-		Size = UDim2.fromOffset(18, 18),
-		Image = "rbxassetid://8628681683",
-		Theme = {ImageColor3 = "Tertiary"}
-	})
-
-	local exit = noti:object("ImageButton", {
-		Image = "http://www.roblox.com/asset/?id=8497487650",
-		AnchorPoint = Vector2.new(1, 0),
-		ImageColor3 = Color3.fromRGB(255, 255, 255),
-		Position = UDim2.new(1, -3,0, 3),
-		Size = UDim2.fromOffset(14, 14),
-		BackgroundTransparency = 1,
-		ImageTransparency = 1
-	})
-
-	exit.MouseButton1Click:Connect(function()
-		fadeOut()
-	end)
-
-	local text = noti:object("TextLabel", {
-		BackgroundTransparency = 1,
-		Text = options.Text,
-		Position = UDim2.new(0, 0,0, 23),
-		Size = UDim2.new(1, 0, 100, 0),
-		TextSize = 16,
-		TextTransparency = 1,
-		TextWrapped = true,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		TextXAlignment = Enum.TextXAlignment.Left,
-		TextYAlignment = Enum.TextYAlignment.Top,
-		TextTransparency = 1
-	})
-
-	text:tween({Size = UDim2.new(1, 0, 0, text.TextBounds.Y)})
-
-	local title = noti:object("TextLabel", {
-		BackgroundTransparency = 1,
-		Position = UDim2.fromOffset(23, 0),
-		Size = UDim2.new(1, -60,0, 20),
-		Font = Enum.Font.SourceSansBold,
-		Text = options.Title,
-		Theme = {TextColor3 = "Tertiary"},
-		TextSize = 17,
-		TextXAlignment = Enum.TextXAlignment.Left,
-		TextWrapped = true,
-		TextTruncate = Enum.TextTruncate.AtEnd,
-		TextTransparency = 1
-	})
-
-	fadeOut = function()
-		task.delay(0.3, function()
-			noti.AbsoluteObject:Destroy()
-			options.Callback()
-		end)
-
-		icon:tween({ImageTransparency = 1, Length = 0.2})
-		exit:tween({ImageTransparency = 1, Length = 0.2})
-		durationHolder:tween({BackgroundTransparency = 1, Length = 0.2})
-		length:tween({BackgroundTransparency = 1, Length = 0.2})
-		text:tween({TextTransparency = 1, Length = 0.2})
-		title:tween({TextTransparency = 1, Length = 0.2}, function()
-			_shadow:tween({ImageTransparency = 1, Length = 0.2})
-			noti:tween({BackgroundTransparency = 1, Length = 0.2, Size = UDim2.fromOffset(300, 0)})
-		end)
-
-	end
-
-	_shadow:tween({ImageTransparency = .6, Length = 0.2})
-	noti:tween({BackgroundTransparency = 0, Length = 0.2, Size = UDim2.fromOffset(300, text.TextBounds.Y + 63)}, function()
-		icon:tween({ImageTransparency = 0, Length = 0.2})
-		exit:tween({ImageTransparency = 0, Length = 0.2})
-		durationHolder:tween({BackgroundTransparency = 0, Length = 0.2})
-		length:tween({BackgroundTransparency = 0, Length = 0.2})
-		text:tween({TextTransparency = 0, Length = 0.2})
-		title:tween({TextTransparency = 0, Length = 0.2})
-	end)
-
-	length:tween({Size = UDim2.fromScale(0, 1), Length = options.Duration}, function()
-		fadeOut()
-	end)
+	
+	rawset(mt, "creditsContainer", creditsTab.container)
+	
+	return mt
 end
 
 function Library:tab(options)
@@ -1652,7 +1457,7 @@ function Library:dropdown(options)
 			local value = item[2]
 
 			if type(label) == "table" then continue end
-
+	
 			local newItem = itemContainer:object("TextButton", {
 				Theme = {
 					BackgroundColor3 = {"Secondary", 25},
@@ -1663,33 +1468,33 @@ function Library:dropdown(options)
 			}):round(5)
 
 			items[i] = {{label, value}, newItem}
-
+	
 			do
 				local hovered = false
 				local down = false
-
+		
 				newItem.MouseEnter:connect(function()
 					hovered = true
 					newItem:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 				end)
-
+		
 				newItem.MouseLeave:connect(function()
 					hovered = false
 					if not down then
 						newItem:tween{BackgroundColor3 = Library:lighten(Library.CurrentTheme.Secondary, 25)}
 					end
 				end)
-
+		
 				newItem.MouseButton1Down:connect(function()
 					newItem:tween{BackgroundColor3 = Library:lighten(Library.CurrentTheme.Tertiary, 10)}
 				end)
-
+		
 				UserInputService.InputEnded:connect(function(key)
 					if key.UserInputType == Enum.UserInputType.MouseButton1 then
 						newItem:tween{BackgroundColor3 = (hovered and Library:lighten(Library.CurrentTheme.Tertiary, 5)) or Library:lighten(Library.CurrentTheme.Secondary, 25)}
 					end
 				end)
-
+		
 				newItem.MouseButton1Click:connect(function()
 					toggle()
 					selectedText.Text = newItem.Text
@@ -1789,10 +1594,6 @@ function Library:button(options)
 		options.Callback()
 	end
 
-	function methods:SetText(txt)
-		text.Text = txt
-	end
-
 	return methods
 end
 
@@ -1804,6 +1605,9 @@ function Library:color_picker(options)
 		Followup = false,
 		Callback = function(color) end
 	}, options)
+
+	if Library._colorPickerExists and not options.Followup then return end
+	Library._colorPickerExists = true
 
 	local buttonContainer = self.container:object("TextButton", {
 		Theme = {BackgroundColor3 = "Secondary"},
@@ -1868,8 +1672,6 @@ function Library:color_picker(options)
 		end)
 
 		buttonContainer.MouseButton1Click:connect(function()
-			if Library._colorPickerExists then return end
-			Library._colorPickerExists = true
 			local hue, sat, val;
 			local updatePicker, updateHue;
 
@@ -1989,9 +1791,6 @@ function Library:color_picker(options)
 							fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
-							task.delay(0.35, function()
-								Library._colorPickerExists = false
-							end)
 						end)
 					end
 
@@ -2203,8 +2002,9 @@ function Library:color_picker(options)
 						brightness:tween{BackgroundTransparency = 1, Length = 0.1}
 						black:tween{BackgroundTransparency = 1, Length = 0.1}
 						_colorPickerDraggableStroke:tween({Transparency = 1, Length = 0.1}, function()
+							darkener.AbsoluteObject:Destroy()
 							task.delay(0.25, function()
-								darkener.AbsoluteObject:Destroy()
+								Library._colorPickerExists = false
 							end)
 						end)
 					end
@@ -2574,9 +2374,6 @@ function Library:color_picker(options)
 							fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
-							task.delay(0.35, function()
-								Library._colorPickerExists = false
-							end)
 						end)
 					end
 
@@ -2634,23 +2431,23 @@ function Library:color_picker(options)
 						_hueDraggableStroke:tween({Transparency = 1, Length = 0.1})
 						label:tween{TextTransparency = 1, Length = 0.1}
 						r:tween({
-							BackgroundTransparency = 1,
-							TextTransparency = 1,
+							BackgroundTransparency = 0,
+							TextTransparency = 0,
 							Length = 0.1
 						})
 						g:tween({
-							BackgroundTransparency = 1,
-							TextTransparency = 1,
+							BackgroundTransparency = 0,
+							TextTransparency = 0,
 							Length = 0.1
 						})
 						b:tween({
-							BackgroundTransparency = 1,
-							TextTransparency = 1,
+							BackgroundTransparency = 0,
+							TextTransparency = 0,
 							Length = 0.1
 						})
 						pickBtn:tween({
-							BackgroundTransparency = 1,
-							ImageTransparency = 1,
+							BackgroundTransparency = 0,
+							ImageTransparency = 0,
 							Length = 0.1
 						})
 						previewLight:tween({BackgroundTransparency = 1, Length = 0.1})
@@ -2659,8 +2456,9 @@ function Library:color_picker(options)
 						_previewDarkIcon:tween({ImageTransparency = 1, Length = 0.1})
 
 						darkener:tween({BackgroundTransparency = 1, Length = 0.1}, function()
+							darkener.AbsoluteObject:Destroy()
 							task.delay(0.25, function()
-								darkener.AbsoluteObject:Destroy()
+								Library._colorPickerExists = false
 							end)
 						end)
 					end
@@ -2712,7 +2510,7 @@ function Library:credit(options)
 				Size = UDim2.fromOffset(24, 24),
 				Position = UDim2.new(1, -8, 1, -8),
 				BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-			}):round(5):tooltip("copy discord")
+			}):round(5):tooltip("Copy Discord")
 			local discord = discordContainer:object("Frame", {
 				Size = UDim2.new(1, -6, 1, -6),
 				Centered = true,
@@ -2783,8 +2581,8 @@ function Library:credit(options)
 			end)
 		end
 	end
-
-
+	
+	
 	self._resize_tab({
 		container = self.creditsContainer or self.container,
 		layout = (self.creditsContainer and self.creditsContainer.AbsoluteObject.UIListLayout) or self.layout
@@ -2899,7 +2697,6 @@ function Library:_theme_selector()
 
 			theme.MouseButton1Click:connect(function()
 				Library:change_theme(Library.Themes[themeName])
-				updateSettings("Theme", themeName)
 			end)
 		end
 	end
@@ -3312,6 +3109,7 @@ function Library:textbox(options)
 		Name = "Text Box",
 		Placeholder = "Type something..",
 		Description = nil,
+		Default = "Type here",
 		Callback = function(t) end
 	}, options)
 
@@ -3353,7 +3151,8 @@ function Library:textbox(options)
 		Size = UDim2.new(0, 50,0, 20),
 		TextSize = 12,
 		PlaceholderText = options.Placeholder,
-		ClipsDescendants = true
+		ClipsDescendants = true,
+		Text = options.Default
 	}):round(5):stroke("Tertiary")
 
 	local writeIcon = textboxContainer:object("ImageLabel", {
@@ -3387,7 +3186,7 @@ function Library:textbox(options)
 
 		textBox.Focused:connect(function()
 			focused = true
-			while focused and RunService.RenderStepped:wait() do
+			while RunService.RenderStepped:wait() and focused do
 				textBox.AbsoluteObject:TweenSize(
 					UDim2.fromOffset(math.clamp(textBox.TextBounds.X + 20, 0, 0.5 * textboxContainer.AbsoluteSize.X), 20),
 					Enum.EasingDirection.InOut,
@@ -3420,6 +3219,7 @@ function Library:textbox(options)
 
 	return methods
 end
+
 
 return setmetatable(Library, {
 	__index = function(_, i)

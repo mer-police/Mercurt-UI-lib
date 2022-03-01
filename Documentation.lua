@@ -77,21 +77,6 @@ Tab:Keybind{
 	Description = nil
 }
 
---> create prompts 
-GUI:Prompt{
-	Followup = false,
-	Title = "Prompt",
-	Text = "Prompts are cool",
-	Buttons = {
-		ok = function()
-			return true
-		end
-		no = function()
-			return false
-		end
-	}
-}
-
 --> create Notifications
 GUI:Notification{
 	Title = "Alert",
